@@ -59,7 +59,6 @@ exports.bookinstance_create_get = function(req, res, next) {
 
 // Handle BookInstance create on POST.
 exports.bookinstance_create_post = [
-
     // Validate input
     body('book').isLength({min:2}).withMessage('Book must be specified'),
     body('imprint').isLength({min:2}).withMessage("Publisher's name must two or more charactes long").trim(),

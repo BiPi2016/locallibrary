@@ -37,8 +37,9 @@
                     <option value="Reserved">Reserved</option>
                 </select>
             </div>
-            <% if(locals.bookinstance._id) { %>
-                <input type="hidden" name="id" value="<%=locals.bookinstance._id%>">
+            <% if(locals.bookinstance) { %>
+                <% if(locals.bookinstance._id)%>
+                    <input type="hidden" name="id" value="<%=locals.bookinstance._id%>">
             <%}%>
 
             <button class="btn btn-primary" type="submit">Submit</button>

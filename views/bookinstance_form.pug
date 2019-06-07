@@ -29,8 +29,9 @@ block content
         option(value='Loaned') Loaned
         option(value='Reserved') Reserved
     
-    if bookinstance._id
-      input(type="hidden", name="id", value=bookinstance._id)
+    if bookinstance
+      if bookinstance._id
+        input(type="hidden", name="id", value=bookinstance._id)
 
     button.btn.btn-primary(type='submit') Submit
 
