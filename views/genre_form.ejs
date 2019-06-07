@@ -1,0 +1,24 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+        <form action="/catalog/genre/create" method="POST">
+            <div class="form-group">
+                <label for="name">Genre: </label>
+                <input type="text" name="name" placeholder="Fantasy, Poetry, Prose etc." id="name" class="form-control" value="<%=(!locals.genre) ? '' : genre.name%>" />
+            </div>    
+            <% if(locals.genre) {%>
+                <input type="hidden" name="id" value="<%=genre._id%>">
+            <%}%>        
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <% if(locals.errors) {%>
+            <ul>
+                <% errors.forEach(error => {%>
+                    <li><%=error.msg%></li>
+                <%})%>                
+            </ul>
+        <%}%>
+    </- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>

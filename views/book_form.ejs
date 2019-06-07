@@ -1,0 +1,64 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+    <% if(locals.book) { %>
+        <p>Book exists <%=book.title%></p>
+    <%}%>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="title">Title: </label>
+            <input type="text" name="title" id="title" class="form-control" required="true" placeholder="Book name" value="<%= locals.book ? book.title : ''%>">
+        </div>
+        <div class="form-group">
+            <label for="author">Author:</label>
+            <select name="author" id="author" class="form-control" required="true" placeholder="Select author">
+                <% authors.sort(function(a, b) {let textA = a.first_name.toUpperCase(); let textB = b.first_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}) %>
+                <% authors.forEach( author => { %>
+                    <% if(locals.book) {%>
+                        <% let authorSelected = (author._id.toString() === book.author || author._id.toString() === book.author._id.toString()) ? 'selected' : '' %>
+                        <option value="<%= author._id %>" <%-authorSelected%> ><%= author.name %></option>
+                    <%} else {%>
+                        <option value="<%= author._id %>"><%= author.name %></option>
+                    <%}%>
+                <%})%>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="summary">Summary: </label>
+            <textarea name="summary" id="summary" rows="3" class="form-control" required=true>
+                <%= locals.book ? book.summary : '' %>
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="isbn">ISBN: </label>
+            <input type="text" name="isbn" id="isbn" class="form-control" placeholder="ISBN13" required=true value="<%= locals.book ? book.isbn : ''%>">
+        </div>
+
+        <div class="form-group">
+            <label >Genre: </label>
+            <div>
+                <% genres.forEach( g => {%>
+                    <div style='display: inline; padding-right:10px;'>
+                        <% let genreChk = g.checked ? 'checked' : '' %>
+                        <input type="checkbox" name="genre" id="<%=g._id%>" value="<%=g._id%>" <%=genreChk%> class="checkbox-input" >
+                        <label for="<%=g._id%>"><%=g.name%></label>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <% if(locals.errors) {%>
+        <ul>
+            <%errors.forEach( err => {%>
+                <li><%=err.msg%></li>
+            <%})%>
+        </ul>
+    <%}%>
+    <%- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>

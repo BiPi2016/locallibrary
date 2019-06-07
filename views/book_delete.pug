@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    h1= title
+
+    if(!bookinstances)
+        p   Do you want to delete this book?
+        form(action="", method="post")
+            input(type="hidden", name="book_id", value=book._id, required=true)
+            button.btn.btn-primary(type="submit") Delete
+    else
+        p The book has following copies in the records
+        p Try deleting them first
+
+        div(style='margin-left:20px;margin-top:20px')
+            h4  Copies
+            each bookCopy in bookinstances
+                hr  
+                h5 #[strong ID:] 
+                    a(href=bookCopy.url) #{bookCopy._id}
+                p   #[strong  Title:] 
+                    a(href=bookCopy.book.url) #{bookCopy.book.title}
+                p   #[strong  Imprint:] #{bookCopy.imprint}
+                a(href=bookCopy.url+'/delete') Delete copy
+
+                

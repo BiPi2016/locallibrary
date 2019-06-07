@@ -1,0 +1,17 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+        <ul>
+            <% if(genre_list.length > 0) {%>
+                <% genre_list.forEach( genre => {%>
+                    <li><a href="<%=genre.url%>"><%=genre.name%></a> and have the id <%=genre._id%></li>
+                <%})%>
+            <%} else {%>
+                <li>There are no genres</li>
+            <%}%>
+        </ul>
+        
+    <%- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>

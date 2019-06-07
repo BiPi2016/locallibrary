@@ -1,0 +1,8 @@
+<ul class="sidebar-nav">
+    <% menuOptions.endpoints.forEach((endpoint, index) => {%>
+        <li><a href="<%= endpoint %>"><%= menuOptions.links[index] %></a></li>
+        <% if(endpoint === '/catalog/bookinstances') {%>
+            <hr>
+        <%}%>
+    <%})%>
+</ul>

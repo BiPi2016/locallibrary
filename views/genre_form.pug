@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 #{title}
+
+    form(action="/catalog/genre/create", method="POST")
+        .form-group
+            label(for="name") Genre:
+            input#name.form-control(type="text" placeholder='Fantasy, Poetry, Prose etc.' name='name' value=(undefined===genre ? '': genre.name))
+
+            if genre
+                input(type="hidden", name="id", value=genre._id)
+        button.btn.btn-primary(type='submit') Submit
+    if errors
+        ul
+            for error in errors
+                li!= error.msg

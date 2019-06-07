@@ -1,0 +1,13 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+    <p>Do you want to delete this copy</p>
+    <form action="" method="post">
+        <input type="hidden" name="bookinstance_id" value="<%=bookinstance._id%>" class="form-control" required=true>
+        <button class="btn btn-primary" type="submit">Delete</button>
+    </form>
+    <%- include('./includes/bodyEnd.ejs') %>
+
+</body>
+</html>

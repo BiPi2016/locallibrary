@@ -1,0 +1,21 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+        <h1><%=genre.name%></h1>
+        <h4>Books</h4>
+        <dl>
+            <% if(genre_books.length > 0) {%>
+                <% genre_books.forEach(book => { %>
+                    <dt><a href="<%=book.url%>"><%=book.title%></a></dt>
+                        <dd><%=book.summary%></dd>
+                <%})%>
+            <%} else {%>
+                No book found
+            <%}%>
+        </dl>
+        <a href="<%=genre.url + '/delete'%>">Delete genre</a>
+        <a href="<%=genre.url + '/update'%>">Update genre</a>
+    <%- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>

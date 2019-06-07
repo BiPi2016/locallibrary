@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= title
+
+    if !books
+        p   Do you want to delete this genre?
+        form(action="", method="post")
+            input(type="hidden", name="genre_id", value=genre._id, require=ture)
+            button.btn.btn-primary(type="submit")   Delete
+    else
+        p   There are following books related to this genre in the library.
+        p   Try deleting them first.
+
+        div(style='margin-left:20px;margin-top:20px')
+
+            h4 Books
+
+            each book in books  
+                dt 
+                    a(href=book.url) #{book.title}
+                dd #{book.summary}

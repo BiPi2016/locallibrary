@@ -1,0 +1,16 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+        <ul>
+            <% if(author_list) {%>    
+                <% author_list.forEach( author => {%>
+                    <li><a href="<%=author.url%>"><%=author.name%></a> (<%=author.life_span%>)</li>
+                <%})%>
+            <%} else {%>
+                <li>There are no authors.</li>
+            <%}%>
+        </ul>         
+    <%- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>

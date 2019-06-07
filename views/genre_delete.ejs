@@ -1,0 +1,26 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+    <% if(!locals.books) {%>
+        <p>Confirm deleting the genre</p>
+        <form action="" method="post">
+            <input type="hidden" name="genre_id" value="<%=genre._id%>" required=true class="form-control">
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+        
+    <%} else {%>
+        <p>Books with this genre exist in library</p>
+        <p>Try deleting them first</p>
+        <div style='margin-left:20px;margin-top:20px'>
+            <h4>Books</h4>
+            <% books.forEach( book => {%>
+                <dt><a href="<%=book.url%>"><%=book.title%></a>
+                    <dd><%=book.summary%></dd>
+                </dt>
+            <%})%>
+        </div>
+    <%}%>
+    <%- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>

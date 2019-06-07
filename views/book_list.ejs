@@ -1,0 +1,19 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+        <% if(book_list.length > 0) { %>
+            <p>There are books availbale in library</p>
+            <% book_list.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}) %>
+            <ul>
+                <% book_list.forEach( book => {%>
+                    <li><a href="<%=book.url%>"><%=book.title%></a> (<%=book.author.name%>)</li>
+                <%})%>
+            </ul>
+        <%} else {%>
+            <p>There are no books.</p>
+        <%}%>
+    <%- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>
+

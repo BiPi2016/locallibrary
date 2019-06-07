@@ -1,0 +1,27 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+    <p><%=author.life_span%></p>
+    <div style='margin-left:20px;margin-top:20px'>
+        <h3>Books</h3>
+        <hr>
+        <% if(author_books.length > 0) {%>
+            <dl>
+                <% author_books.forEach( book => {%>
+                    <dt><a href="<%=book.url%>"><%=book.title%></a></dt>
+                        <dd><%=book.summary%></dd>
+                    <hr>
+                <%})%>
+            </dl> 
+        <%} else {%>
+            No books by this author are currently available.
+        <%}%>
+        
+    </div>
+    <hr>
+    <a href="<%=author.url + '/delete'%>">Delete author</a>
+    <a href="<%=author.url + '/update'%>">Update author</a>
+    <%- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>

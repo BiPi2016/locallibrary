@@ -1,0 +1,31 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%- include('./includes/bodyStart.ejs') %>
+    <h1><%=author.name%></h1>
+    <% if(author_books.length > 0) {%>
+        <p><strong>Delete following books before attempting to delete the author.</strong></p>
+        <div style='margin-left:20px;margin-top:20px'>
+            <h4>Books</h4>
+            <dl>
+                <% author_books.forEach( book => {%>
+                    <dt>
+                        <a href="<%=book.url%>"><%=book.title%></a>
+                    </dt>
+                    <dd><%=book.summary%></dd>
+                <%})%>
+            </dl>
+        </div>
+    <%} else {%>
+        <p>Confirm deleting the author</p>
+        <form action="" method="post">
+            <div class="form-group">
+                <input type="hidden" name="authorid" id="authorid" value="<%=author._id%>" required=true class="form-control">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+            </div>
+        </form>
+    <%}%>
+    </- include('./includes/bodyEnd.ejs') %>
+
+</body>
+</html>

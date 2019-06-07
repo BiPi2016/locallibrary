@@ -1,0 +1,22 @@
+<%- include('./includes/start.ejs') %>
+</head>
+<body>
+    <%-include('./includes/bodyStart.ejs') %>
+        <% if(bookinstance_list.length > 0) {%>
+            <ul>
+                <% bookinstance_list.forEach(item => { %>
+                    <li><a href="<%=item.url%>"><%=item.book.title%>: <%=item.imprint%></a>
+                        <% let spanClass = item.status == 'Available' ? 'text-success' : ( item.status == 'Maintenance' ? 'text-danger' : 'text-warning') %>
+                        <span class="<%=spanClass%>"> - <%=item.status%></span>
+                        <%if(item.status != 'Available') {%>
+                            (Due: <%=item.due_date_formatted%>)
+                        <%}%>
+                    </li>
+                <%})%>
+            </ul>
+        <%} else {%>
+            There are no book copies in the library.
+        <%}%>
+    <%- include('./includes/bodyEnd.ejs') %>
+</body>
+</html>
