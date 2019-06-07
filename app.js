@@ -42,7 +42,8 @@ app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);
 
 // Sets up the database
-const mongoDB = 'mongodb+srv://admin:Change2018@cluster0-cmq5u.azure.mongodb.net/local_library?retryWrites=true&w=majority';
+const dev_db_url = 'mongodb+srv://admin:Change2018@cluster0-cmq5u.azure.mongodb.net/local_library?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser:true, useFindAndModify: false });
 const db = mongoose.connection;
 db.on('eror', console.error.bind(console, 'MongoDB connection error'));
